@@ -598,11 +598,11 @@ function rebuildLabels(){
   for(const b of BLDGS){
     if(!bnds.contains(b.a))continue;
     const pt=map.latLngToContainerPoint(b.a);
-    const w=b.n.length*6+20,h=18;
-    const box={x:pt.x+8,y:pt.y-h/2,w,h};
+    const w=b.n.length*6.4+22,h=22;            // measured pill geometry + 2px breathing room
+    const box={x:pt.x+11,y:pt.y-h/2,w,h};
     if(placed.some(o=>box.x<o.x+o.w&&o.x<box.x+box.w&&box.y<o.y+o.h&&o.y<box.y+box.h))continue;
     placed.push(box);
-    labelLayer.addLayer(L.marker(b.a,{icon:L.divIcon({className:'bldg-label',
+    labelLayer.addLayer(L.marker(b.a,{icon:L.divIcon({className:'blabel',
       html:'<span>'+b.n+'</span>',iconSize:[0,0]}),interactive:false,keyboard:false}));
   }
 }
